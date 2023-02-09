@@ -15,8 +15,7 @@ worker_node2=`oc get node -l node-role.kubernetes.io/worker= --no-headers|awk 'N
 #Reading the ipvalue from global var
 ls $WORKSPACE/flexy-artifacts/workdir/install-dir/ipfile.txt
 private_ip_address=`cat $WORKSPACE/flexy-artifacts/workdir/install-dir/ipfile.txt`
-echo "private_ip_address"
-
+echo "private_ip_address";echo" $private_ip_address"
 #Assign the nodes to be eressable
 oc label node  $worker_node1 "k8s.ovn.org/egress-assignable"=""
 oc label node  $worker_node2 "k8s.ovn.org/egress-assignable"=""
@@ -62,6 +61,6 @@ for i in {3..4}; do echo pod$i=mypod;mypod=$(oc get pods -n test$i|awk 'NR==2{pr
 #cluster is enabled with ipecho service and https://mastern-jenkins-csb-openshift-qe.apps.ocp-c1.prod.psi.redhat.com/job/ocp-common/job/ginkgo-test/ is run successfully 
 
 #Delete all the projects for next iteration
-for i in {1..4}; do oc delete ns test$i;#rm namespace$i.yaml;done
+for i in {1..4}; do oc delete ns test$i;done
 echo "###################################ITERATION COMPLETE###########################################"
-sleep 3
+sleep 3;
