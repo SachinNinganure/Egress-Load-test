@@ -15,7 +15,8 @@ worker_node2=`oc get node -l node-role.kubernetes.io/worker= --no-headers|awk 'N
 #Reading the ipvalue from global var
 ls $WORKSPACE/flexy-artifacts/workdir/install-dir/ipfile.txt
 private_ip_address=`cat $WORKSPACE/flexy-artifacts/workdir/install-dir/ipfile.txt`
-echo "private_ip_address";echo" $private_ip_address"
+echo "private_ip_address";
+echo $private_ip_address
 #Assign the nodes to be eressable
 oc label node  $worker_node1 "k8s.ovn.org/egress-assignable"=""
 oc label node  $worker_node2 "k8s.ovn.org/egress-assignable"=""

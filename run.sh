@@ -16,4 +16,3 @@ echo -e "\033[1m$(date -u) ${@}\033[0m" >>result04.txt
 
 echo -e "\033[1m$(date -u) ${@}\033[0m" >>result05.txt
 ./egress_2p.sh $private_ip_address>>result05.txt
-~
