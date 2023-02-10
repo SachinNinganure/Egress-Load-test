@@ -32,7 +32,7 @@ oc get egressip>egressip.txt
 
 #create test projects, and create some test pods in them, label the projects
 
-for i in {1..4};
+for i in {1..200};
 do 
     export test_num=$i
     test_name=test$test_num
