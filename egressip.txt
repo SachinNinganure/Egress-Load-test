@@ -1,3 +1,3 @@
-NAME        EGRESSIPS     ASSIGNED NODE                               ASSIGNED EGRESSIPS
-egressip1   10.0.48.101   ip-10-0-55-191.us-east-2.compute.internal   10.0.48.102
-egressip2   10.0.48.201   ip-10-0-55-191.us-east-2.compute.internal   10.0.48.201
+NAME        EGRESSIPS     ASSIGNED NODE                              ASSIGNED EGRESSIPS
+egressip1   10.0.48.101   ip-10-0-48-65.us-east-2.compute.internal   10.0.48.101
+egressip2   10.0.48.201   ip-10-0-48-65.us-east-2.compute.internal   10.0.48.201
