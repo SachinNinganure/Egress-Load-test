@@ -21,7 +21,7 @@ echo $private_ip_address
 egress_assigned_n1=`oc get node $worker_node1 --show-labels|egrep -c egress-assignable`
 if [ $egress_assigned_n1 == 1 ];then echo "Node $worker_node1 Already egressable";else oc label node  $worker_node1 "k8s.ovn.org/egress-assignable"="";fi
 egress_assigned_n2=`oc get node $worker_node2 --show-labels|egrep -c egress-assignable`
-if [ $egress_assigned2 == 1 ];then echo "Node $worker_node2 Already egressable";else oc label node  $worker_node2 "k8s.ovn.org/egress-assignable"="";fi
+if [ $egress_assigned_n2 == 1 ];then echo "Node $worker_node2 Already egressable";else oc label node  $worker_node2 "k8s.ovn.org/egress-assignable"="";fi
 #oc label node  $worker_node2 "k8s.ovn.org/egress-assignable"=""
 
 #TO Automatically get the value of ipv4 address and add the number of ip's in the same subnet of ipv4 in the egress object yaml files.
@@ -43,12 +43,13 @@ do
     test_name=test$test_num
     envsubst < namespace.yaml > namespace$test_num.yaml
     oc create -f namespace$test_num.yaml
-    oc create -f list_for_pods.json -n $test_name
+    oc project test$i;oc create -f list_for_pods.json;oc get pods;oc label ns test$i department=qe;
+    #oc create -f list_for_pods.json -n $test_name
     rc_name=$(oc get rc -n $test_name --no-headers -o name)
     sleep 5
     oc wait $rc_name --for jsonpath='{.status.readyReplicas}'=2 --timeout=90s -n $test_name
     oc get pods -n $test_name
-    oc label ns test$i department=qe;
+    #oc label ns test$i department=qe;
 done
 
 
