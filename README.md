@@ -16,6 +16,8 @@ Reference jira's https://issues.redhat.com/browse/OCPQE-12310
 		 https://issues.redhat.com/browse/OCPQE-13579
 About "Pipeline egress-perf-chaos-multibranch" 
        Build number expects cluster id against which test is to be executed
-       "Check-box" IPECHO is to be enabled when ipecho service is to be set on the cluster for the first time 
-
+********* "Check-box IPECHO" is to be enabled when ipecho service is to be set on the cluster for the first time ********
+ONE AMONG THE BELOW MUST BE SELECTED
+******** "Check-box 4Projects" must be selected for repeatedly creating only 4 projects SEE STEP 2 **********
+******** "Check-box 200Projects" must be selected for repeatedly creating 200 projects SEE STEP 2 **********
 Chaos test with the Egress-Network-Scenario will be run in parallel to Egress-Perf Test.
