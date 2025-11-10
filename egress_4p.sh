@@ -203,13 +203,27 @@ for i in {1..2}; do
     oc project "$namespace"
     echo "Executing curl to $private_ip_address:9095..."
     
-    if egress=$(timeout 30 oc exec "$mypod" -- curl -s --connect-timeout 10 --max-time 20 "$private_ip_address:9095" 2>&1); then
+    # Test curl with proper error handling
+    curl_exit_code=0
+    egress=$(timeout 30 oc exec "$mypod" -- curl -s --connect-timeout 10 --max-time 20 "$private_ip_address:9095" 2>/dev/null) || curl_exit_code=$?
+    
+    if [[ $curl_exit_code -eq 0 && -n "$egress" ]]; then
         echo "✓ Curl SUCCESS from $mypod"
         echo "Response: $egress"
         echo "Expected egress IP for blue team should be visible in response"
     else
-        echo "✗ Curl FAILED from $mypod"
-        echo "Error: $egress"
+        echo "✗ Curl FAILED from $mypod (exit code: $curl_exit_code)"
+        if [[ $curl_exit_code -eq 124 ]]; then
+            echo "Error: Connection timeout"
+        elif [[ $curl_exit_code -eq 7 ]]; then
+            echo "Error: Failed to connect to host"
+        elif [[ $curl_exit_code -eq 28 ]]; then
+            echo "Error: Operation timeout"
+        else
+            echo "Error: Curl failed with exit code $curl_exit_code"
+        fi
+        # Try to get more info about connectivity
+        oc exec "$mypod" -- ping -c 1 "$private_ip_address" >/dev/null 2>&1 && echo "  - Ping to $private_ip_address: SUCCESS" || echo "  - Ping to $private_ip_address: FAILED"
     fi
     echo "---"
 done
@@ -229,13 +243,27 @@ for i in {3..4}; do
     oc project "$namespace"
     echo "Executing curl to $private_ip_address:9095..."
     
-    if egress=$(timeout 30 oc exec "$mypod" -- curl -s --connect-timeout 10 --max-time 20 "$private_ip_address:9095" 2>&1); then
+    # Test curl with proper error handling
+    curl_exit_code=0
+    egress=$(timeout 30 oc exec "$mypod" -- curl -s --connect-timeout 10 --max-time 20 "$private_ip_address:9095" 2>/dev/null) || curl_exit_code=$?
+    
+    if [[ $curl_exit_code -eq 0 && -n "$egress" ]]; then
         echo "✓ Curl SUCCESS from $mypod"
         echo "Response: $egress"
         echo "Expected egress IP for red team should be visible in response"
     else
-        echo "✗ Curl FAILED from $mypod"
-        echo "Error: $egress"
+        echo "✗ Curl FAILED from $mypod (exit code: $curl_exit_code)"
+        if [[ $curl_exit_code -eq 124 ]]; then
+            echo "Error: Connection timeout"
+        elif [[ $curl_exit_code -eq 7 ]]; then
+            echo "Error: Failed to connect to host"
+        elif [[ $curl_exit_code -eq 28 ]]; then
+            echo "Error: Operation timeout"
+        else
+            echo "Error: Curl failed with exit code $curl_exit_code"
+        fi
+        # Try to get more info about connectivity
+        oc exec "$mypod" -- ping -c 1 "$private_ip_address" >/dev/null 2>&1 && echo "  - Ping to $private_ip_address: SUCCESS" || echo "  - Ping to $private_ip_address: FAILED"
     fi
     echo "---"
 done
