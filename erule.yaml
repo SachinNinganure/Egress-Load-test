@@ -1,0 +1,134 @@
+kind: EgressFirewall
+apiVersion: k8s.ovn.org/v1
+metadata:
+  name: default
+spec:
+  egress:
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.2/32
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.3/32
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.4/32
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.5/32
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.6/32
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.7/32
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.8/32
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.9/32
+  - type: Allow
+    to:
+      cidrSelector: 1.1.2.10/32
+  - type: Allow
+    to:
+      nodeSelector:
+        matchLabels:
+          region: east
+  - type: Allow
+    to:
+      nodeSelector:
+        matchLabels:
+          region: west
+  - type: Deny
+    to:
+      nodeSelector:
+        matchLabels:
+          region: north
+  - type: Deny
+    to:
+      nodeSelector:
+        matchLabels:
+          region: south
+  - type: Deny 
+    to:
+      dnsName: www.test.com
+  - type: Deny 
+    to:
+      dnsName: www.test1.com
+  - type: Deny 
+    to:
+      dnsName: www.test2.com
+  - type: Deny 
+    to:
+      dnsName: www.test3.com
+  - type: Deny 
+    to:
+      dnsName: www.test4.com
+  - type: Deny 
+    to:
+      dnsName: www.test5.com
+  - type: Deny 
+    to:
+      dnsName: www.test6.com
+  - type: Deny 
+    to:
+      dnsName: www.test7.com
+  - type: Deny 
+    to:
+      dnsName: www.test8.com
+  - type: Deny 
+    to:
+      dnsName: www.test9.com
+  - type: Deny 
+    to:
+      dnsName: www.test10.com
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.9/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.10/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.8/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.7/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.6/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.5/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.4/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.3/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.2/32
+  - type: Deny
+    to:
+      cidrSelector: 1.1.3.1/32
+  - type: Deny
+    to:
+      dnsName: www.test16.com
+  - type: Deny
+    to:
+      dnsName: www.test17.com
+  - type: Deny
+    to:
+      dnsName: www.test18.com
+  - type: Deny
+    to:
+      dnsName: www.test19.com
+  - type: Deny
+    to:
+      dnsName: www.test11.com
+  - type: Deny
+    to:
+      dnsName: www.test21.com

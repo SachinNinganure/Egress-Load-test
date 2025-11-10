@@ -1,34 +1,23 @@
-[1mFri Jan 27 11:16:45 UTC 2023 [0m
-NAME      VERSION                              AVAILABLE   PROGRESSING   SINCE   STATUS
-version   4.10.0-0.nightly-2023-01-26-184414   True        False         3h6m    Cluster version is 4.10.0-0.nightly-2023-01-26-184414
+
+NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS
+version   4.14.35   True        False         6h20m   Cluster version is 4.14.35
 3 master nodes and 3 worker nodes
-node/ip-10-0-153-182.us-east-2.compute.internal labeled
+private_ip_address
+
+node/ip-10-0-31-54.us-east-2.compute.internal labeled
+node/ip-10-0-54-238.us-east-2.compute.internal labeled
                     beta.kubernetes.io/os=linux
                     failure-domain.beta.kubernetes.io/region=us-east-2
                     failure-domain.beta.kubernetes.io/zone=us-east-2a
                     k8s.ovn.org/egress-assignable=
                     kubernetes.io/arch=amd64
-                    kubernetes.io/hostname=ip-10-0-153-182.us-east-2.compute.internal
+                    kubernetes.io/hostname=ip-10-0-31-54.us-east-2.compute.internal
                     kubernetes.io/os=linux
 --
                     topology.ebs.csi.aws.com/zone=us-east-2a
                     topology.kubernetes.io/region=us-east-2
                     topology.kubernetes.io/zone=us-east-2a
 Annotations:        cloud.network.openshift.io/egress-ipconfig:
-                      [{"interface":"eni-06d7a78788977535a","ifaddr":{"ipv4":"10.0.128.0/19"},"capacity":{"ipv4":9,"ipv6":10}}]
-                    csi.volume.kubernetes.io/nodeid: {"ebs.csi.aws.com":"i-0268c1dc9c540f5a4"}
-                    k8s.ovn.org/host-addresses: ["10.0.153.182"]
-egressip.k8s.ovn.org/egressip1 created
-egressip.k8s.ovn.org/egressip2 created
-Now using project "test1" on server "https://api.sninganu-npt10.qe.devcluster.openshift.com:6443".
-
-You can add applications to this project with the 'new-app' command. For example, try:
-
-    oc new-app rails-postgresql-example
-
-to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
-
-    kubectl create deployment hello-node --image=k8s.gcr.io/e2e-test-images/agnhost:2.33 -- /agnhost serve-hostname
-
-replicationcontroller/test-rc created
-service/test-service created
+                      [{"interface":"eni-032258a29dc3a42cc","ifaddr":{"ipv4":"10.0.0.0/19"},"capacity":{"ipv4":14,"ipv6":15}}]
+                    csi.volume.kubernetes.io/nodeid: {"ebs.csi.aws.com":"i-08abb101a4f949693"}
+                    machine.openshift.io/machine: openshift-machine-api/sac-bv-2snmt-worker-us-east-2a-x6ht4
